@@ -85,10 +85,10 @@ def sample_matrix(in_size, patch_size, scaling_factor):
     M = get_transform_matrix(in_size, patch_size, rot, (sx * scale, sy * scale), (tx, ty))
     return M
 
-def sample_patch(image, augment=True):
+def sample_patch(image, sf=512/1200, augment=True):
     in_size = image.shape[:2]
     
-    sf = 512 / 1200 # rescale 1200 pixels to 512
+    #sf = 512 / 1200 # rescale 1200 pixels to 512
     if augment:
         M = sample_matrix(in_size, patch_size=patch_size, scaling_factor = (sf, sf) )
         x = cv2.warpAffine(image, M[:2], dsize=patch_size) / 255
